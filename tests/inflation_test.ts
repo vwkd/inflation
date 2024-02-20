@@ -12,11 +12,11 @@ export const inflationRates = {
   2006: 1.6,
 };
 
-export const currencyConversions = {
+export const currencyReplacements = {
   2002: 1 / 1.95583,
 };
 
-const inflation = new Inflation(inflationRates, currencyConversions);
+const inflation = new Inflation(inflationRates, currencyReplacements);
 
 Deno.test("same year", () => {
   const nominalAmount = 100;
@@ -25,7 +25,7 @@ Deno.test("same year", () => {
   assertEquals(realAmount, 100);
 });
 
-Deno.test("same year, with currency conversion", () => {
+Deno.test("same year, with currency replacement", () => {
   const nominalAmount = 100;
   const realAmount = inflation.adjust(nominalAmount, 2002, 2002);
 
@@ -46,14 +46,14 @@ Deno.test("old to new, two years", () => {
   assertEquals(realAmount, 103.2256);
 });
 
-Deno.test("old to new, one year, with currency conversion", () => {
+Deno.test("old to new, one year, with currency replacement", () => {
   const nominalAmount = 100;
   const realAmount = inflation.adjust(nominalAmount, 2001, 2002);
 
   assertEquals(realAmount, 51.844996753296556);
 });
 
-Deno.test("old to new, two years, with currency conversion", () => {
+Deno.test("old to new, two years, with currency replacement", () => {
   const nominalAmount = 100;
   const realAmount = inflation.adjust(nominalAmount, 2001, 2003);
 
@@ -82,7 +82,7 @@ Deno.test("old to new, too old", () => {
       const realAmount = inflation.adjust(nominalAmount, 1997, 2003);
     },
     Error,
-    "Start year '1997' must be greater than or equal to minimum year '1998'.",
+    "From year '1997' must be greater than or equal to minimum year '1998'.",
   );
 });
 
@@ -94,7 +94,7 @@ Deno.test("old to new, too new", () => {
       const realAmount = inflation.adjust(nominalAmount, 2004, 2007);
     },
     Error,
-    "End year '2007' must be less than or equal to maximum year '2006'.",
+    "To year '2007' must be less than or equal to maximum year '2006'.",
   );
 });
 
@@ -112,14 +112,14 @@ Deno.test("new to old, two years", () => {
   assertEquals(realAmount, 100);
 });
 
-Deno.test("new to old, one year, with currency conversion", () => {
+Deno.test("new to old, one year, with currency replacement", () => {
   const nominalAmount = 51.844996753296556;
   const realAmount = inflation.adjust(nominalAmount, 2002, 2001);
 
   assertEquals(realAmount, 100);
 });
 
-Deno.test("new to old, two years, with currency conversion", () => {
+Deno.test("new to old, two years, with currency replacement", () => {
   const nominalAmount = 52.36344672082952;
   const realAmount = inflation.adjust(nominalAmount, 2003, 2001);
 
@@ -148,7 +148,7 @@ Deno.test("new to old, too old", () => {
       const realAmount = inflation.adjust(nominalAmount, 2003, 1997);
     },
     Error,
-    "End year '1997' must be greater than or equal to minimum year '1998'.",
+    "To year '1997' must be greater than or equal to minimum year '1998'.",
   );
 });
 
@@ -160,6 +160,6 @@ Deno.test("new to old, too new", () => {
       const realAmount = inflation.adjust(nominalAmount, 2007, 2004);
     },
     Error,
-    "Start year '2007' must be less than or equal to maximum year '2006'.",
+    "From year '2007' must be less than or equal to maximum year '2006'.",
   );
 });
