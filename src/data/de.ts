@@ -40,9 +40,9 @@ export const inflationRates = {
 };
 
 /**
- * Yearly currency conversions in Germany
+ * Yearly currency replacements in Germany
  */
-export const currencyConversions = {
+export const currencyReplacements = {
   // Umrechnung von DM in Euro
   // Quelle: https://de.wikipedia.org/wiki/Deutsche_Mark#Die_Deutsche_Mark_nach_der_Einführung_des_Euro
   2002: 1 / 1.95583,
