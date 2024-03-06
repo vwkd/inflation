@@ -1,4 +1,10 @@
 {
+  "name": "@vwkd/inflation",
+  "version": "0.0.3",
+  "exports": {
+    ".": "./src/main.ts",
+    "./de": "./src/data/de.ts"
+  },
   "imports": {
     "@std/assert": "jsr:@std/assert@^0.218.2"
   }
