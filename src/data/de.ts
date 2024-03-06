@@ -1,4 +1,9 @@
 /**
+ * Inflation data for Germany
+ * @module
+ */
+
+/**
  * Yearly inflation rate in Germany in percent
  *
  * - using [Verbraucherpreisindex für Deutschland](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html)
