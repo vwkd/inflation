@@ -1,6 +1,6 @@
 {
   "name": "@vwkd/inflation",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "exports": {
     ".": "./src/main.ts",
     "./de": "./src/data/de.ts"
