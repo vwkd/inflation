@@ -1,3 +1,5 @@
+import type { CurrencyReplacements, InflationRates } from "../types.ts";
+
 /**
  * Yearly inflation rate in Germany in percent
  *
@@ -5,7 +7,7 @@
  * - from 1963 until 1991 using "Preisindex für die Lebenshaltung aller privaten Haushalte im früheren Bundesgebiet" from [Destatis - Statistischer Bericht - Verbraucherpreisindex für Deutschland - Lange Reihen ab 1948 - Januar 2024](https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Publikationen/Downloads-Verbraucherpreise/statistischer-bericht-verbraucherpreisindex-lange-reihen-5611103241015.html)
  * - from 1992 using "Verbraucherpreisindex für Deutschland" from [Destatis - Tabelle 61111-0001: Verbraucherpreisindex: Deutschland, Jahre](https://www-genesis.destatis.de/genesis//online?operation=table&code=61111-0001&bypass=true&levelindex=0&levelid=1708435341978#abreadcrumb)
  */
-export const inflationRates = {
+export const inflationRates: InflationRates = {
   // Preisindex für die Lebenshaltung aller 2-Personen-Rentner-Haushalte mit geringem Einkommen im früheren Bundesgebiet
   1958: 2.1,
   1959: 1.0,
@@ -80,7 +82,7 @@ export const inflationRates = {
 /**
  * Yearly currency replacements in Germany
  */
-export const currencyReplacements = {
+export const currencyReplacements: CurrencyReplacements = {
   // Umrechnung von DM in Euro
   // Quelle: https://de.wikipedia.org/wiki/Deutsche_Mark#Die_Deutsche_Mark_nach_der_Einführung_des_Euro
   2002: 1 / 1.95583,

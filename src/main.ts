@@ -1,4 +1,8 @@
-import { getKeys } from "./types.ts";
+import {
+  type CurrencyReplacements,
+  getKeys,
+  type InflationRates,
+} from "./types.ts";
 
 /**
  * Inflation calculator
@@ -8,8 +12,8 @@ import { getKeys } from "./types.ts";
 export class Inflation {
   #minYear: number;
   #maxYear: number;
-  #inflationRates: Record<number, number>;
-  #currencyReplacements: Record<number, number>;
+  #inflationRates: InflationRates;
+  #currencyReplacements: CurrencyReplacements;
 
   /**
    * Create inflation calculator
@@ -18,8 +22,8 @@ export class Inflation {
    * @param currencyReplacements (optional) map of years to currency replacement factors
    */
   constructor(
-    inflationRates: Record<number, number>,
-    currencyReplacements: Record<number, number> = {},
+    inflationRates: InflationRates,
+    currencyReplacements: CurrencyReplacements = {},
   ) {
     this.#minYear = Math.min(...getKeys(inflationRates)) - 1;
     this.#maxYear = Math.max(...getKeys(inflationRates));
