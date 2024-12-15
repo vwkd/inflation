@@ -1,22 +1,7 @@
 import { Inflation } from "../src/main.ts";
 import { assertEquals, assertThrows } from "@std/assert";
 
-export const inflationRates = {
-  1999: 0.7,
-  2000: 1.3,
-  2001: 2.0,
-  2002: 1.4,
-  2003: 1.0,
-  2004: 1.6,
-  2005: 1.6,
-  2006: 1.6,
-};
-
-export const currencyReplacements = {
-  2002: 1 / 1.95583,
-};
-
-const inflation = new Inflation(inflationRates, currencyReplacements);
+const inflation = new Inflation("DE");
 const minYear = inflation.minYear;
 const maxYear = inflation.maxYear;
 

@@ -1,4 +1,9 @@
 /**
+ * ISO 3166 alpha-2 country codes
+ */
+export type CountryCode = "DE";
+
+/**
  * Map of years to inflation rates
  *
  * - years must be consecutive

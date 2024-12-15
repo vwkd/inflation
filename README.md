@@ -17,9 +17,8 @@ Inflation calculator
 
 ```ts
 import { Inflation } from "@vwkd/inflation";
-import { currencyReplacements, inflationRates } from "@vwkd/inflation/de";
 
-const inflationDe = new Inflation(inflationRates, currencyReplacements);
+const inflationDe = new Inflation("DE");
 
 const nominalAmount = 100;
 const fromYear = 1999;

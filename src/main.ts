@@ -1,4 +1,9 @@
 import {
+  currencyReplacements as currencyReplacementsDe,
+  inflationRates as inflationRatesDe,
+} from "./data/de.ts";
+import {
+  type CountryCode,
   type CurrencyReplacements,
   getKeys,
   type InflationRates,
@@ -18,17 +23,18 @@ export class Inflation {
   /**
    * Create inflation calculator
    *
-   * @param inflationRates map of years to inflation rates, years must be consecutive, rates must be in percent
-   * @param currencyReplacements (optional) map of years to currency replacement factors
+   * @param countryCode ISO 3166 alpha-2 country code
    */
-  constructor(
-    inflationRates: InflationRates,
-    currencyReplacements: CurrencyReplacements = {},
-  ) {
-    this.#minYear = Math.min(...getKeys(inflationRates)) - 1;
-    this.#maxYear = Math.max(...getKeys(inflationRates));
-    this.#inflationRates = inflationRates;
-    this.#currencyReplacements = currencyReplacements;
+  constructor(countryCode: CountryCode) {
+    if (countryCode === "DE") {
+      this.#inflationRates = inflationRatesDe;
+      this.#currencyReplacements = currencyReplacementsDe;
+    } else {
+      throw new Error(`Invalid country code '${countryCode}'`);
+    }
+
+    this.#minYear = Math.min(...getKeys(this.#inflationRates)) - 1;
+    this.#maxYear = Math.max(...getKeys(this.#inflationRates));
   }
 
   /**
