@@ -17,6 +17,8 @@ export const currencyReplacements = {
 };
 
 const inflation = new Inflation(inflationRates, currencyReplacements);
+const minYear = inflation.minYear;
+const maxYear = inflation.maxYear;
 
 Deno.test("same year", () => {
   const nominalAmount = 100;
@@ -76,25 +78,27 @@ Deno.test("old to new, newest", () => {
 
 Deno.test("old to new, too old", () => {
   const nominalAmount = 100;
+  const year = minYear - 3;
 
   assertThrows(
     () => {
-      const realAmount = inflation.adjust(nominalAmount, 1997, 2003);
+      const realAmount = inflation.adjust(nominalAmount, year, 2003);
     },
     Error,
-    "From year '1997' must be greater than or equal to minimum year '1998'.",
+    `From year '${year}' must be greater than or equal to minimum year '1957'.`,
   );
 });
 
 Deno.test("old to new, too new", () => {
   const nominalAmount = 100;
+  const year = maxYear + 3;
 
   assertThrows(
     () => {
-      const realAmount = inflation.adjust(nominalAmount, 2004, 2007);
+      const realAmount = inflation.adjust(nominalAmount, 2004, year);
     },
     Error,
-    "To year '2007' must be less than or equal to maximum year '2006'.",
+    `To year '${year}' must be less than or equal to maximum year '2023'.`,
   );
 });
 
@@ -142,24 +146,26 @@ Deno.test("new to old, newest", () => {
 
 Deno.test("new to old, too old", () => {
   const nominalAmount = 100;
+  const year = minYear - 3;
 
   assertThrows(
     () => {
-      const realAmount = inflation.adjust(nominalAmount, 2003, 1997);
+      const realAmount = inflation.adjust(nominalAmount, 2003, year);
     },
     Error,
-    "To year '1997' must be greater than or equal to minimum year '1998'.",
+    `To year '${year}' must be greater than or equal to minimum year '1957'.`,
   );
 });
 
 Deno.test("new to old, too new", () => {
   const nominalAmount = 100;
+  const year = maxYear + 3;
 
   assertThrows(
     () => {
-      const realAmount = inflation.adjust(nominalAmount, 2007, 2004);
+      const realAmount = inflation.adjust(nominalAmount, year, 2004);
     },
     Error,
-    "From year '2007' must be less than or equal to maximum year '2006'.",
+    `From year '${year}' must be less than or equal to maximum year '2023'.`,
   );
 });
