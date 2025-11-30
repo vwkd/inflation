@@ -77,6 +77,7 @@ export const inflationRates: InflationRates = {
   2021: 3.1,
   2022: 6.9,
   2023: 5.9,
+  2024: 2.2,
 };
 
 /**
