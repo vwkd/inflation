@@ -21,9 +21,9 @@ import { Inflation } from "@vwkd/inflation";
 const inflationDe = new Inflation("DE");
 
 const nominalAmount = 100;
-const fromYear = 1999;
-const toYear = 2023;
+const fromYear = 2004;
+const toYear = 2024;
 const realAmount = inflationDe.adjust(nominalAmount, fromYear, toYear);
 
-console.log(realAmount); // 79.96
+console.log(realAmount); // 148.65
 ```
